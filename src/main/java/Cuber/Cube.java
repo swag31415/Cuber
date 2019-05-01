@@ -19,6 +19,44 @@ public class Cube {
         }
     }
 
+    private enum Moves {
+
+        r(CubeMappings.m, 2, false), 
+        m(CubeMappings.m, 1, false), 
+        l(CubeMappings.m, 0, true),
+
+        d(CubeMappings.e, 2, false), 
+        e(CubeMappings.e, 1, false), 
+        u(CubeMappings.e, 0, true),
+
+        f(CubeMappings.s, 2, false), 
+        s(CubeMappings.s, 1, false), 
+        b(CubeMappings.s, 0, true);
+
+        private CubeMappings mapType;
+        private int pos;
+        private boolean isReversed;
+        private Map<Integer, Colors[]> map;
+
+        private Moves(CubeMappings mapType, int pos, boolean isReversed) {
+            this.mapType = mapType;
+            this.pos = pos;
+            this.isReversed = isReversed;
+        }
+
+        public CubeMappings getMapType() {
+            return this.mapType;
+        }
+
+        public int getPos() {
+            return this.pos;
+        }
+
+        public boolean getIsReversed() {
+            return this.isReversed;
+        }
+    }
+
     private Colors[][][] pMap;
 
     public Cube(int dim) {
