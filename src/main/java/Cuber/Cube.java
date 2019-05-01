@@ -13,7 +13,6 @@ public class Cube {
         private Colors(char sym) {
             this.sym = sym;
         }
-
     }
 
     private Colors[][][] pMap;
@@ -21,7 +20,7 @@ public class Cube {
     public Cube(int dim) {
         this.dim1 = dim;
         this.dim2 = dim;
-        pMap = genSolved(dim1, dim2);
+        this.pMap = genSolved(dim1, dim2);
     }
 
     private Colors[][][] genSolved(int dim1, int dim2) {
@@ -55,16 +54,23 @@ public class Cube {
         return this.pMap;
     }
 
-    public Colors[] getRow(int face, int row) {
-        return pMap[face][row];
+    public Colors[] getRow(int face, int row, boolean isReversed) {
+        return isReversed ? reverse(pMap[face][row]) : pMap[face][row];
     }
 
-    public Colors[] getColumn(int face, int column) {
+    public Colors[] getColumn(int face, int column, boolean isReversed) {
         Colors[] values = new Colors[dim1];
         for (int i = 0; i < dim1; i++) {
             values[i] = pMap[face][i][column];
         }
-        return values;
+        return isReversed ? reverse(values) : values;
     }
 
+    public Colors[] reverse(Colors[] array) {
+        Colors[] reversedArray = new Colors[array.length];
+        for (int i = 0; i < array.length; i++) {
+            reversedArray[(array.length - 1) - i] = array[i];
+        }
+        return reversedArray;
+    }
 }
