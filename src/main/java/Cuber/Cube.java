@@ -37,6 +37,11 @@ public class Cube {
 
         return cubeMap;
     }
+    
+    @Override
+    public String toString() {
+        return CubeDisplay.getCube(this);
+    }
 
     public int getDim1() {
         return this.dim1;
