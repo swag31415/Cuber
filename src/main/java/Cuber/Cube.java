@@ -8,10 +8,14 @@ public class Cube {
     public enum Colors {
         White('W'), Blue('B'), Green('G'), Orange('O'), Red('R'), Yellow('Y');
 
-        char sym;
+        private char sym;
 
         private Colors(char sym) {
             this.sym = sym;
+        }
+
+        public char getSym() {
+            return sym;
         }
     }
 

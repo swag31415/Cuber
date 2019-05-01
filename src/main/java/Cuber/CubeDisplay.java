@@ -1,7 +1,5 @@
 package Cuber;
 
-import Cuber.Cube.Colors;
-
 public class CubeDisplay {
 
     public static String getSpaces(Cube cube) {
@@ -15,7 +13,7 @@ public class CubeDisplay {
     public static String getRow(Cube cube, int face, int row) {
         String out = "";
         for (int i = 0; i < cube.getDim2(); i++) {
-            out += cube.getPMap()[face][row][i].sym + " ";
+            out += cube.getPMap()[face][row][i].getSym() + " ";
         }
         return out;
     }
