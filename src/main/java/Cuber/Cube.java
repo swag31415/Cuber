@@ -66,6 +66,10 @@ public class Cube {
         return isReversed ? reverse(values) : values;
     }
 
+    public Colors[] getSet(int face, int set, boolean isReversed) {
+        return (set > 2) ? getColumn(face, set - 3, isReversed) : getRow(face, set, isReversed);
+    }
+
     public Colors[] reverse(Colors[] array) {
         Colors[] reversedArray = new Colors[array.length];
         for (int i = 0; i < array.length; i++) {
