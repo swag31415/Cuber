@@ -55,4 +55,16 @@ public class Cube {
         return this.pMap;
     }
 
+    public Colors[] getRow(int face, int row) {
+        return pMap[face][row];
+    }
+
+    public Colors[] getColumn(int face, int column) {
+        Colors[] values = new Colors[dim1];
+        for (int i = 0; i < dim1; i++) {
+            values[i] = pMap[face][i][column];
+        }
+        return values;
+    }
+
 }
