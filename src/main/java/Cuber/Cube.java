@@ -1,5 +1,10 @@
 package Cuber;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import Cuber.CubeMappings.Face;
+
 public class Cube {
 
     private static final int cubeSize = 6; // Number of faces in a cube *DONT CHANGE THIS*
@@ -63,6 +68,24 @@ public class Cube {
         this.dim1 = dim;
         this.dim2 = dim;
         this.pMap = genSolved(dim1, dim2);
+    }
+
+    private Map<Integer, Colors[]> genMap(Moves move) {
+        Map<Integer, Colors[]> map = new HashMap<Integer, Colors[]>();
+        for (Face face : move.mapType.getFaces()) {
+            Colors[] set = null;
+            switch (face.getOri()) {
+            case Row:
+                set = getRow(face.getFace(), move.pos, face.getIsRev());
+                break;
+
+            case Column:
+                set = getColumn(face.getFace(), move.pos, face.getIsRev());
+                break;
+            }
+            map.put(face.getFace(), set);
+        }
+        return map;
     }
 
     private Colors[][][] genSolved(int dim1, int dim2) {
