@@ -18,9 +18,9 @@ public class Cube {
 
     private Colors[][][] pMap;
 
-    public Cube(int dim1, int dim2) {
-        this.dim1 = dim1;
-        this.dim2 = dim2;
+    public Cube(int dim) {
+        this.dim1 = dim;
+        this.dim2 = dim;
         pMap = genSolved(dim1, dim2);
     }
 
