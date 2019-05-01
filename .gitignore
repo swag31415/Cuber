@@ -6,3 +6,6 @@ build
 
 # Ignore Class files
 *.class
+
+# Ignore Vscode launch files
+.vscode/launch.json
