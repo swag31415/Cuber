@@ -69,6 +69,14 @@ public class Cube {
         this.pMap = genSolved(dim1, dim2);
     }
 
+    public void spin(Moves move) {
+        Colors[][] mapping = genMap(move);
+        Colors[][] clone = mapping.clone();
+        for (int i = 0; i < mapping.length; i++) {
+            mapping[i] = clone[Utils.safeSub(i, mapping.length)];
+        }
+    }
+
     private Colors[][] genMap(Moves move) {
         Face[] faces = move.mapType.getFaces();
         Colors[][] map = new Colors[faces.length][dim1];
