@@ -9,4 +9,12 @@ public class Utils {
         }
         return reversedArray;
     }
+
+    public static int safeSub(int i, int length) {
+        return (i > 0) ? (i - 1) : (length - 1);
+    }
+
+    public static int safeAdd(int i, int length) {
+        return (i < (length - 1)) ? (i + 1) : (0);
+    }
 }
