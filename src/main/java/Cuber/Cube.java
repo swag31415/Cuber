@@ -1,6 +1,5 @@
 package Cuber;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import Cuber.CubeMappings.Face;
@@ -70,8 +69,8 @@ public class Cube {
         this.pMap = genSolved(dim1, dim2);
     }
 
-    private Map<Integer, Colors[]> genMap(Moves move) {
-        Map<Integer, Colors[]> map = new HashMap<Integer, Colors[]>();
+    private Mapping genMap(Moves move) {
+        Mapping map = new Mapping();
         for (Face face : move.mapType.getFaces()) {
             Colors[] set = null;
             switch (face.getOri()) {
@@ -83,7 +82,7 @@ public class Cube {
                 set = getColumn(face.getFace(), move.pos, face.getIsRev());
                 break;
             }
-            map.put(face.getFace(), set);
+            map.addElement(face.getFace(), set);
         }
         return map;
     }
@@ -133,13 +132,5 @@ public class Cube {
 
     public Colors[] getSet(int face, int set, boolean isReversed) {
         return (set > 2) ? getColumn(face, set - 3, isReversed) : getRow(face, set, isReversed);
-    }
-
-    public Colors[] reverse(Colors[] array) {
-        Colors[] reversedArray = new Colors[array.length];
-        for (int i = 0; i < array.length; i++) {
-            reversedArray[(array.length - 1) - i] = array[i];
-        }
-        return reversedArray;
     }
 }
