@@ -69,10 +69,14 @@ public class Cube {
         this.pMap = genSolved(dim1, dim2);
     }
 
-    private Mapping genMap(Moves move) {
-        Mapping map = new Mapping();
-        for (Face face : move.mapType.getFaces()) {
+    private Colors[][] genMap(Moves move) {
+        Face[] faces = move.mapType.getFaces();
+        Colors[][] map = new Colors[faces.length][dim1];
+
+        for (int i = 0; i < faces.length; i++) {
+            Face face = faces[i];
             Colors[] set = null;
+            
             switch (face.getOri()) {
             case Row:
                 set = getRow(face.getFace(), move.pos, face.getIsRev());
@@ -82,7 +86,6 @@ public class Cube {
                 set = getColumn(face.getFace(), move.pos, face.getIsRev());
                 break;
             }
-            map.addElement(face.getFace(), set);
         }
         return map;
     }
