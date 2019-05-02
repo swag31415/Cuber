@@ -120,7 +120,7 @@ public class Cube {
     }
 
     public Colors[] getRow(int face, int row, boolean isReversed) {
-        return isReversed ? reverse(pMap[face][row]) : pMap[face][row];
+        return isReversed ? (Colors[]) Utils.reverse(pMap[face][row]) : pMap[face][row];
     }
 
     public Colors[] getColumn(int face, int column, boolean isReversed) {
@@ -128,7 +128,7 @@ public class Cube {
         for (int i = 0; i < dim1; i++) {
             values[i] = pMap[face][i][column];
         }
-        return isReversed ? reverse(values) : values;
+        return isReversed ? (Colors[]) Utils.reverse(values) : values;
     }
 
     public Colors[] getSet(int face, int set, boolean isReversed) {
