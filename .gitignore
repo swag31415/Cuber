@@ -9,3 +9,4 @@ build
 
 # Ignore Vscode launch files
 .vscode/launch.json
+.vscode/settings.json

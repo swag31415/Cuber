@@ -1,12 +1,10 @@
-package Cuber;
+package Cuber.Cube;
 
-import Cuber.Cube.Colors;
-
-public class CubeDisplay {
+public class Display {
 
     public static String getSpaces(Cube cube) {
         String out = "";
-        for (int i = 0; i < (cube.getDim2() * 2); i++) {
+        for (int i = 0; i < (cube.getDim() * 2); i++) {
             out += " ";
         }
         return out;
@@ -14,8 +12,8 @@ public class CubeDisplay {
 
     public static String getRow(Cube cube, int face, int row) {
         String out = "";
-        for (int i = 0; i < cube.getDim2(); i++) {
-            out += cube.getPMap()[face][row][i].sym + " ";
+        for (int i = 0; i < cube.getDim(); i++) {
+            out += cube.getPMap()[face][row][i] + " ";
         }
         return out;
     }
@@ -24,7 +22,7 @@ public class CubeDisplay {
         String out = "";
         String space = includeSpace ? getSpaces(cube) : "";
 
-        for (int i = 0; i < cube.getDim1(); i++) {
+        for (int i = 0; i < cube.getDim(); i++) {
             out += space;
             for (int face : faces) {
                 out += getRow(cube, face, i);
