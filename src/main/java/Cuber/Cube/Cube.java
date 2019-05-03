@@ -20,10 +20,10 @@ public class Cube {
         genMoves(Moves.values());
     }
 
-    public Cube spin(Moves move) {
+    public Cube spin(Moves move, int count) {
         performMapping(move.getMove(), move.getIsReversed());
         performMapping(move.getImplMove(), false);
-        return this;
+        return (count == 1) ? this : this.spin(move, count - 1);
     }
 
     private void performMapping(Color[][] mapping, boolean isReversed) {
