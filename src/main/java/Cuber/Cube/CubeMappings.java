@@ -1,4 +1,4 @@
-package Cuber;
+package Cuber.Cube;
 
 public enum CubeMappings {
 

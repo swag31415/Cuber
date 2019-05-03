@@ -1,7 +1,8 @@
-package Cuber;
+package Cuber.Cube;
 
-import Cuber.Color.Colors;
-import Cuber.CubeMappings.Face;
+import Cuber.Utils;
+import Cuber.Cube.Color.Colors;
+import Cuber.Cube.CubeMappings.Face;
 
 public class Cube {
 
