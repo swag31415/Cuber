@@ -2,33 +2,33 @@ package Cuber.Cube;
 
 public enum Moves {
 
-    r(CubeMappings.m, 2, 4, false), 
-    m(CubeMappings.m, 1, -1, false), 
-    l(CubeMappings.m, 0, 3, true),
+    r(Mappings.m, 2, 4, false), 
+    m(Mappings.m, 1, -1, false), 
+    l(Mappings.m, 0, 3, true),
 
-    d(CubeMappings.e, 2, 2, false), 
-    e(CubeMappings.e, 1, -1, false), 
-    u(CubeMappings.e, 0, 1, true),
+    d(Mappings.e, 2, 2, false), 
+    e(Mappings.e, 1, -1, false), 
+    u(Mappings.e, 0, 1, true),
 
-    f(CubeMappings.s, 2, 0, false), 
-    s(CubeMappings.s, 1, -1, false), 
-    b(CubeMappings.s, 0, 5, true);
+    f(Mappings.s, 2, 0, false), 
+    s(Mappings.s, 1, -1, false), 
+    b(Mappings.s, 0, 5, true);
 
-    private CubeMappings mapType;
+    private Mappings mapType;
     private int pos;
     private int impl;
     private boolean isReversed;
     private Color[][] move;
     private Color[][] implMove;
 
-    private Moves(CubeMappings mapType, int pos, int impl, boolean isReversed) {
+    private Moves(Mappings mapType, int pos, int impl, boolean isReversed) {
         this.mapType = mapType;
         this.pos = pos;
         this.isReversed = isReversed;
         this.impl = impl;
     }
 
-    public CubeMappings getMapType() {
+    public Mappings getMapType() {
         return this.mapType;
     }
 

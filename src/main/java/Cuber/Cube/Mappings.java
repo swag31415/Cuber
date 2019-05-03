@@ -1,6 +1,6 @@
 package Cuber.Cube;
 
-public enum CubeMappings {
+public enum Mappings {
 
     m(0, 1, 5, 2, FaceType.Column, FaceType.Column, FaceType.PosRevEntryRevColumn, FaceType.Column),
     s(1, 4, 2, 3, FaceType.Row, FaceType.PosRevColumn, FaceType.PosRevEntryRevRow, FaceType.EntryRevColumn),
@@ -8,7 +8,7 @@ public enum CubeMappings {
 
     private Face face0, face1, face2, face3;
 
-    private CubeMappings(int face0, int face1, int face2, int face3, FaceType type0, FaceType type1, FaceType type2, FaceType type3) {
+    private Mappings(int face0, int face1, int face2, int face3, FaceType type0, FaceType type1, FaceType type2, FaceType type3) {
         this.face0 = new Face(face0, type0);
         this.face1 = new Face(face1, type1);
         this.face2 = new Face(face2, type2);

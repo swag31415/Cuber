@@ -1,6 +1,6 @@
 package Cuber.Cube;
 
-public class CubeDisplay {
+public class Display {
 
     public static String getSpaces(Cube cube) {
         String out = "";

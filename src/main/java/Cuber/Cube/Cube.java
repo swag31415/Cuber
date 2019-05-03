@@ -2,7 +2,7 @@ package Cuber.Cube;
 
 import Cuber.Utils;
 import Cuber.Cube.Color.Colors;
-import Cuber.Cube.CubeMappings.Face;
+import Cuber.Cube.Mappings.Face;
 
 public class Cube {
 
@@ -102,7 +102,7 @@ public class Cube {
     
     @Override
     public String toString() {
-        return CubeDisplay.getCube(this);
+        return Display.getCube(this);
     }
 
     public int getDim() {
