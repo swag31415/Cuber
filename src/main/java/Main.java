@@ -1,5 +1,3 @@
-package Cuber;
-
 public class Main {
 
     public Main() {
