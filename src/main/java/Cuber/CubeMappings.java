@@ -2,17 +2,17 @@ package Cuber;
 
 public enum CubeMappings {
 
-    m(0, 1, 5, 2, Set.Column, Set.Column, Set.Column, Set.Column, false, false, true, false),
-    s(1, 4, 2, 3, Set.Row, Set.Column, Set.Row, Set.Column, false, false, true, true),
-    e(0, 4, 5, 3, Set.Row, Set.Row, Set.Row, Set.Row, false, false, false, false);
+    m(0, 1, 5, 2, FaceType.Column, FaceType.Column, FaceType.PosRevEntryRevColumn, FaceType.Column),
+    s(1, 4, 2, 3, FaceType.Row, FaceType.PosRevColumn, FaceType.PosRevEntryRevRow, FaceType.EntryRevColumn),
+    e(0, 4, 5, 3, FaceType.Row, FaceType.Row, FaceType.Row, FaceType.Row);
 
     private Face face0, face1, face2, face3;
 
-    private CubeMappings(int face0, int face1, int face2, int face3, Set ori0, Set ori1, Set ori2, Set ori3, boolean isRev0, boolean isRev1, boolean isRev2, boolean isRev3) {
-        this.face0 = new Face(face0, ori0, isRev0);
-        this.face1 = new Face(face1, ori1, isRev1);
-        this.face2 = new Face(face2, ori2, isRev2);
-        this.face3 = new Face(face3, ori3, isRev3);
+    private CubeMappings(int face0, int face1, int face2, int face3, FaceType type0, FaceType type1, FaceType type2, FaceType type3) {
+        this.face0 = new Face(face0, type0);
+        this.face1 = new Face(face1, type1);
+        this.face2 = new Face(face2, type2);
+        this.face3 = new Face(face3, type3);
     }
 
     public Face[] getFaces() {
@@ -20,36 +20,51 @@ public enum CubeMappings {
         return faces;
     }
 
-    public enum Set {
-        Row, Column;
+    private enum FaceType {
+        Row(false, false, true),
+        Column(false, false, false),
+        PosRevRow(true, false, true),
+        PosRevColumn(true, false, false),
+        EntryRevRow(false, true, true),
+        EntryRevColumn(false, true, false),
+        PosRevEntryRevRow(true, true, true),
+        PosRevEntryRevColumn(true, true, false);
+
+        boolean isPosRev;
+        boolean isEntryRev;
+        boolean isRow;
+
+        private FaceType(boolean isPosRev, boolean isEntryRev, boolean isRow) {
+            this.isPosRev = isPosRev;
+            this.isEntryRev = isEntryRev;
+            this.isRow = isRow;
+        }
     }
 
     public class Face {
 
         private int face;
-        private Set ori;
-        private boolean isRev;
+        private FaceType type;
     
-        public Face(int face, Set ori, boolean isRev) {
+        public Face(int face, FaceType type) {
             this.face = face;
-            this.ori = ori;
-            this.isRev = isRev;
+            this.type = type;
         }
     
         public int getFace() {
             return this.face;
         }
-    
-        public Set getOri() {
-            return this.ori;
+
+        public boolean getIsRow() {
+            return type.isRow;
         }
-    
-        public boolean getIsRev() {
-            return this.isRev;
+
+        public boolean getIsPosRev() {
+            return type.isPosRev;
         }
-    
-        public boolean isIsRev() {
-            return this.isRev;
+
+        public boolean getIsEntryRev() {
+            return type.isEntryRev;
         }
         
     }
