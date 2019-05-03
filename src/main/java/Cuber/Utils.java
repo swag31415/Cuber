@@ -17,4 +17,13 @@ public class Utils {
     public static int safeAdd(int i, int length) {
         return (i < (length - 1)) ? (i + 1) : (0);
     }
+
+    public static String arrayToString(Object[] array) {
+        String result = "[";
+        for (int i = 0; i < array.length; i++) {
+            result += (i != 0) ? ", " : "";
+            result += (array[i].getClass().isArray()) ? "\n" + arrayToString((Object[]) array[i]) : "[" + array[i].toString() + "]";
+        }
+        return result + "]";
+    }
 }
