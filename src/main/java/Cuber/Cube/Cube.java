@@ -21,6 +21,8 @@ public class Cube {
     }
 
     public Cube spin(Moves move, int count) {
+        count = count % 4;
+        count += (count > 0) ? 0 : 4;
         performMapping(move.getMove(), move.getIsReversed());
         performMapping(move.getImplMove(), false);
         return (count == 1) ? this : this.spin(move, count - 1);
