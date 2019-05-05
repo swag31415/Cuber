@@ -1,5 +1,6 @@
 package Cuber;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -8,8 +9,9 @@ import Cuber.Cube.Color;
 import Cuber.Cube.Cube;
 import Cuber.Cube.Moves;
 
-public class Cuber {
+public class Cuber implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     Map<Moves[], Integer> algMap;
     int algLength;
     int cubeDim;
@@ -99,5 +101,23 @@ public class Cuber {
             out += Utils.arrayToString(alg) + " : " + algMap.get(alg) + "\n";
         }
         return out + "]";
+    }
+
+    public void log() {
+        String fileName = "CuberLog " + cubeDim + "x" + cubeDim;
+        Utils.printToLocalFile(fileName, this.toString());
+        Utils.printToLocalFile(fileName, this);
+    }
+
+    public boolean pullFromLog() {
+        try {
+            String fileName = "CuberLog " + cubeDim + "x" + cubeDim;
+            Cuber logCube = (Cuber) Utils.getFromLocalFile(fileName);
+            this.algMap.putAll(logCube.getAlgMap());
+            return true;
+        } catch (Exception e) {
+            // e.printStackTrace();
+            return false;
+        }
     }
 }
