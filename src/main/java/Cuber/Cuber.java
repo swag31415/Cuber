@@ -1,7 +1,7 @@
 package Cuber;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import Cuber.Cube.Color;
@@ -10,7 +10,7 @@ import Cuber.Cube.Moves;
 
 public class Cuber {
 
-    List<Moves[]> algList;
+    Map<Moves[], Integer> algMap;
     int algLength;
     int cubeDim;
     Moves[] bestAlg;
@@ -20,15 +20,15 @@ public class Cuber {
         this.cubeDim = cubeDim;
         this.algLength = algLength;
         this.bestAlgErr = 60;
-        this.algList = new LinkedList<Moves[]>();
+        this.algMap = new HashMap<Moves[], Integer>();
     }
 
     public void findAlgs(int iterations) {
         for (int i = 0; i < iterations; i++) {
             Moves[] alg = genAlg(algLength);
-            if (!algList.contains(alg)) {
-                algList.add(alg);
+            if (!algMap.containsKey(alg)) {
                 int err = testAlg(alg);
+                algMap.put(alg, err);
                 if (err < bestAlgErr) {
                     bestAlgErr = err;
                     bestAlg = alg;
@@ -72,8 +72,8 @@ public class Cuber {
         return alg;
     }
 
-    public List<Moves[]> getAlgList() {
-        return this.algList;
+    public Map<Moves[], Integer> getAlgMap() {
+        return this.algMap;
     }
 
     public int getAlgLength() {
