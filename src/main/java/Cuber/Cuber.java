@@ -92,5 +92,12 @@ public class Cuber {
         return this.bestAlg;
     }
 
-
+    @Override
+    public String toString() {
+        String out = "[\n";
+        for (Moves[] alg : algMap.keySet()) {
+            out += Utils.arrayToString(alg) + " : " + algMap.get(alg) + "\n";
+        }
+        return out + "]";
+    }
 }
