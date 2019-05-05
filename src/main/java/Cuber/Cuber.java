@@ -23,6 +23,20 @@ public class Cuber {
         this.algList = new LinkedList<Moves[]>();
     }
 
+    public void findAlgs(int iterations) {
+        for (int i = 0; i < iterations; i++) {
+            Moves[] alg = genAlg(algLength);
+            if (!algList.contains(alg)) {
+                algList.add(alg);
+                int err = testAlg(alg);
+                if (err < bestAlgErr) {
+                    bestAlgErr = err;
+                    bestAlg = alg;
+                }
+            }
+        }
+    }
+
     public int testAlg(Moves[] alg) {
         Cube testCube = new Cube(cubeDim);
         for (Moves move : alg) {
