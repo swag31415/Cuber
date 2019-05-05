@@ -23,6 +23,15 @@ public class Cuber {
         this.algList = new LinkedList<Moves[]>();
     }
 
+    public Moves[] genAlg(int algLength) {
+        Moves[] alg = new Moves[algLength];
+        int moveSetSize = Moves.values().length;
+        for (int i = 0; i < algLength; i++) {
+            alg[i] = Moves.values()[new Random().nextInt(moveSetSize)];
+        }
+        return alg;
+    }
+
     public List<Moves[]> getAlgList() {
         return this.algList;
     }
