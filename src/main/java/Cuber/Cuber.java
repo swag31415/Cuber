@@ -23,6 +23,32 @@ public class Cuber {
         this.algList = new LinkedList<Moves[]>();
     }
 
+    public int testAlg(Moves[] alg) {
+        Cube testCube = new Cube(cubeDim);
+        for (Moves move : alg) {
+            testCube.spin(move, 1);
+        }
+        return compareCubes(testCube, new Cube(cubeDim));
+    }
+
+    private int compareCubes(Cube cube1, Cube cube2) {
+        Color[][][] pMap1 = cube1.getPMap();
+        Color[][][] pMap2 = cube2.getPMap();
+        if (cube1.getDim() == cube2.getDim()) {
+            int diff = 0;
+            for (int i = 0; i < pMap1.length; i++) {
+                for (int j = 0; j < pMap1[i].length; j++) {
+                    for (int k = 0; k < pMap1[i][j].length; k++) {
+                        diff += (pMap1[i][j][k].getColor() == pMap2[i][j][k].getColor()) ? 0 : 1;
+                    }
+                }
+            }
+            return diff;
+        } else {
+            return -1;
+        }
+    }
+
     public Moves[] genAlg(int algLength) {
         Moves[] alg = new Moves[algLength];
         int moveSetSize = Moves.values().length;
