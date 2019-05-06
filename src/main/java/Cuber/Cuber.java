@@ -2,6 +2,7 @@ package Cuber;
 
 import java.util.Random;
 import java.util.Map.Entry;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -11,14 +12,14 @@ import Cuber.Cube.Moves;
 
 public class Cuber {
 
-    HashMap<Moves[], Integer> algMap;
+    HashMap<String, Integer> algMap;
     int algLength;
     int cubeDim;
 
     public Cuber(int cubeDim, int algLength) {
         this.cubeDim = cubeDim;
         this.algLength = algLength;
-        this.algMap = new HashMap<Moves[], Integer>();
+        this.algMap = new HashMap<String, Integer>();
     }
 
     public int getBestAlgErr() {
@@ -33,9 +34,10 @@ public class Cuber {
     public void findAlgs(int iterations) {
         for (int i = 0; i < iterations; i++) {
             Moves[] alg = genAlg(algLength);
-            if (!algMap.containsKey(alg)) {
+            String algStr = Utils.arrayToString(alg);
+            if (!algMap.containsKey(algStr)) {
                 int err = testAlg(alg);
-                algMap.put(alg, err);
+                algMap.put(algStr, err);
             }
         }
     }
@@ -75,7 +77,7 @@ public class Cuber {
         return alg;
     }
 
-    public HashMap<Moves[], Integer> getAlgMap() {
+    public HashMap<String, Integer> getAlgMap() {
         return this.algMap;
     }
 
@@ -90,11 +92,12 @@ public class Cuber {
     @Override
     public String toString() {
         String out = "";
-        Iterator<Entry<Moves[], Integer>> iterator = algMap.entrySet().iterator();
+        Iterator<Entry<String, Integer>> iterator = new ArrayList<HashMap.Entry<String, Integer>>(algMap.entrySet()).iterator();
+        System.out.println("Now in listlad");
         while(iterator.hasNext()) {
-            out += "\"" + Utils.arrayToString(iterator.next().getKey()) + "\", " + iterator.next().getValue() + "\n";
+            out += "\"" + iterator.next().getKey() + "\", " + iterator.next().getValue() + "\n";
         }
-        return out + "";
+        return out;
     }
 
     public void log() {
@@ -108,7 +111,7 @@ public class Cuber {
     public boolean pullFromLog() {
         try {
             String fileName = "CuberLog " + cubeDim + "x" + cubeDim;
-            HashMap<Moves[], Integer> logMap = (HashMap<Moves[], Integer>) Utils.getFromLocalFile(fileName);
+            HashMap<String, Integer> logMap = (HashMap<String, Integer>) Utils.getFromLocalFile(fileName);
             this.algMap.putAll(logMap);
             return true;
         } catch (Exception e) {
