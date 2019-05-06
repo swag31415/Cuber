@@ -33,7 +33,7 @@ public class Utils {
 
     public static void printToLocalFile(String fileName, String print) {
         try {
-            FileWriter writer = new FileWriter(new File(fileName + ".csvas"));
+            FileWriter writer = new FileWriter(new File(fileName + ".csv"));
             writer.append(print);
             writer.flush();
             writer.close();

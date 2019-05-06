@@ -1,18 +1,17 @@
 package Cuber;
 
-import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
+import java.util.Map.Entry;
+import java.util.HashMap;
+import java.util.Iterator;
 
 import Cuber.Cube.Color;
 import Cuber.Cube.Cube;
 import Cuber.Cube.Moves;
 
-public class Cuber implements Serializable {
+public class Cuber {
 
-    private static final long serialVersionUID = 1L;
-    Map<Moves[], Integer> algMap;
+    HashMap<Moves[], Integer> algMap;
     int algLength;
     int cubeDim;
 
@@ -76,7 +75,7 @@ public class Cuber implements Serializable {
         return alg;
     }
 
-    public Map<Moves[], Integer> getAlgMap() {
+    public HashMap<Moves[], Integer> getAlgMap() {
         return this.algMap;
     }
 
@@ -91,8 +90,9 @@ public class Cuber implements Serializable {
     @Override
     public String toString() {
         String out = "";
-        for (Moves[] alg : algMap.keySet()) {
-            out += "\"" + Utils.arrayToString(alg) + "\", " + algMap.get(alg) + "\n";
+        Iterator<Entry<Moves[], Integer>> iterator = algMap.entrySet().iterator();
+        while(iterator.hasNext()) {
+            out += "\"" + Utils.arrayToString(iterator.next().getKey()) + "\", " + iterator.next().getValue() + "\n";
         }
         return out + "";
     }
@@ -100,14 +100,16 @@ public class Cuber implements Serializable {
     public void log() {
         String fileName = "CuberLog " + cubeDim + "x" + cubeDim;
         Utils.printToLocalFile(fileName, this.toString());
-        Utils.printToLocalFile(fileName, this);
+        System.out.println("saved to file");
+        Utils.printToLocalFile(fileName, algMap);
+        System.out.println("logging complete");
     }
 
     public boolean pullFromLog() {
         try {
             String fileName = "CuberLog " + cubeDim + "x" + cubeDim;
-            Cuber logCube = (Cuber) Utils.getFromLocalFile(fileName);
-            this.algMap.putAll(logCube.getAlgMap());
+            HashMap<Moves[], Integer> logMap = (HashMap<Moves[], Integer>) Utils.getFromLocalFile(fileName);
+            this.algMap.putAll(logMap);
             return true;
         } catch (Exception e) {
             // e.printStackTrace();

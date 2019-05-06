@@ -25,6 +25,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        long startTime = System.currentTimeMillis();
         int argsReq = 3;
         if (args.length == argsReq) { 
             int[] mArgs = new int[argsReq];
@@ -35,5 +36,6 @@ public class Main {
         } else {
             System.err.println("Enter 3 ints next time, (interations, cube dimension, algorithm length)");
         }
+        System.out.println("Time taken: " + (System.currentTimeMillis() - startTime) + "ms");
     }
 }
