@@ -9,6 +9,14 @@
 plugins {
     // Apply the java-library plugin to add support for Java Library
     id 'java-library'
+    id 'java'
+    id 'application'
+}
+
+// sourceSets.main.java.srcDirs = ['src/main/java']
+
+application {
+    mainClassName = "Main"
 }
 
 repositories {
