@@ -115,6 +115,10 @@ public class Cube {
         return this.pMap;
     }
 
+    public void setPMap(Color[][][] pMap) {
+        this.pMap = pMap;
+    }
+
     public Color[][][] getEMap() {
         return this.eMap;
     }

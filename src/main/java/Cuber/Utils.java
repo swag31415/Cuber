@@ -1,5 +1,16 @@
 package Cuber;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.io.Serializable;
+
 public class Utils {
 
     public static int safeSub(int i, int length) {
@@ -14,8 +25,45 @@ public class Utils {
         String result = "[";
         for (int i = 0; i < array.length; i++) {
             result += (i != 0) ? ", " : "";
-            result += (array[i].getClass().isArray()) ? "\n" + arrayToString((Object[]) array[i]) : "[" + array[i].toString() + "]";
+            result += (array[i].getClass().isArray()) ? "\n" + arrayToString((Object[]) array[i])
+                    : "[" + array[i].toString() + "]";
         }
         return result + "]";
+    }
+
+    public static void printToLocalFile(String fileName, String print) {
+        try {
+            FileWriter writer = new FileWriter(new File(fileName + ".csv"));
+            writer.append(print);
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void printToLocalFile(String fileName, Serializable print) {
+        ObjectOutputStream oStream;
+        try {
+            oStream = new ObjectOutputStream(new FileOutputStream(new File(fileName + ".cuberLog")));
+            oStream.writeObject(print);
+            oStream.flush();
+            oStream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Object getFromLocalFile(String fileName) throws FileNotFoundException, IOException, ClassNotFoundException {
+        ObjectInputStream oStream;
+        Object out = null;
+        
+        oStream = new ObjectInputStream(new FileInputStream(new File(fileName + ".cuberLog")));
+        out = oStream.readObject();
+        oStream.close();
+        
+        return out;
     }
 }
