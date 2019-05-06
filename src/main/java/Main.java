@@ -20,7 +20,7 @@ public class Main {
             System.out.println(((i * subIterations) / ((double) iterations)) * 100 + "% done");
         }
         cuber.findAlgs(remIterations);
-
+        System.out.println("Best Alg Err: " + cuber.getBestAlgErr());
         cuber.log();
     }
 
