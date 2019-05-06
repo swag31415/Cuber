@@ -10,3 +10,7 @@ build
 # Ignore Vscode launch files
 .vscode/launch.json
 .vscode/settings.json
+
+# Ignore AppData
+*.cuberLog
+*.csv
