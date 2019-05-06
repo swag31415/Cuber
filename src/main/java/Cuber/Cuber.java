@@ -15,14 +15,20 @@ public class Cuber implements Serializable {
     Map<Moves[], Integer> algMap;
     int algLength;
     int cubeDim;
-    Moves[] bestAlg;
-    int bestAlgErr;
 
     public Cuber(int cubeDim, int algLength) {
         this.cubeDim = cubeDim;
         this.algLength = algLength;
-        this.bestAlgErr = 60;
         this.algMap = new HashMap<Moves[], Integer>();
+    }
+
+    public int getBestAlgErr() {
+        for (int i = 0; i < 60; i++) {
+            if (algMap.containsValue(i)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     public void findAlgs(int iterations) {
@@ -31,10 +37,6 @@ public class Cuber implements Serializable {
             if (!algMap.containsKey(alg)) {
                 int err = testAlg(alg);
                 algMap.put(alg, err);
-                if (err < bestAlgErr) {
-                    bestAlgErr = err;
-                    bestAlg = alg;
-                }
             }
         }
     }
@@ -84,14 +86,6 @@ public class Cuber implements Serializable {
 
     public int getCubeDim() {
         return this.cubeDim;
-    }
-
-    public int getBestAlgErr() {
-        return this.bestAlgErr;
-    }
-
-    public Moves[] getBestAlg() {
-        return this.bestAlg;
     }
 
     @Override
