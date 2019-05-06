@@ -90,11 +90,11 @@ public class Cuber implements Serializable {
 
     @Override
     public String toString() {
-        String out = "[\n";
+        String out = "";
         for (Moves[] alg : algMap.keySet()) {
-            out += Utils.arrayToString(alg) + " : " + algMap.get(alg) + "\n";
+            out += "\"" + Utils.arrayToString(alg) + "\", " + algMap.get(alg) + "\n";
         }
-        return out + "]";
+        return out + "";
     }
 
     public void log() {
