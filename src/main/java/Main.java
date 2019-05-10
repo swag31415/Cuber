@@ -1,4 +1,7 @@
 import Cuber.Cuber;
+import Cuber.Comparators.ColorDiff;
+import Cuber.Cube.Moves;
+import Cuber.Generators.Rand3x3Gen;
 
 public class Main {
 
@@ -12,7 +15,7 @@ public class Main {
         int subIterations = (iterations - (iterations % cycles)) / cycles;
         int remIterations = (iterations % cycles);
         
-        Cuber cuber = new Cuber(args[1], args[2]);
+        Cuber cuber = new Cuber(args[1], args[2], new Rand3x3Gen(Moves.values()), new ColorDiff());
         System.out.println(cuber.pullFromLog() ? "Successfully pulled from log" : "Failed to pull from log");
 
         for (int i = 1; i <= cycles; i++) {
