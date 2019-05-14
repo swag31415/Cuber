@@ -7,7 +7,6 @@ import java.util.Arrays;
 import Cuber.Utils;
 import Cuber.Cube.Color;
 import Cuber.Cube.Cube;
-import Cuber.Cube.Moves;
 import Cuber.Molds.Comparator;
 
 public class DisColor implements Comparator {

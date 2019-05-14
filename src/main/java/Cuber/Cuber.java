@@ -12,12 +12,12 @@ import Cuber.Molds.Generator;
 
 public class Cuber {
 
-    HashMap<String, Integer> algMap;
-    int algLength;
-    int cubeDim;
+    private HashMap<String, Integer> algMap;
+    private int algLength;
+    private int cubeDim;
 
-    Generator gen;
-    Comparator comp;
+    private Generator gen;
+    private Comparator comp;
 
     private Cube solvedCube;
 
@@ -50,7 +50,7 @@ public class Cuber {
         }
     }
 
-    public int testAlg(Moves[] alg) {
+    private int testAlg(Moves[] alg) {
         Cube testCube = new Cube(cubeDim);
         for (Moves move : alg) {
             testCube.spin(move, 1);
@@ -62,10 +62,6 @@ public class Cuber {
         return this.algMap;
     }
 
-    public int getAlgLength() {
-        return this.algLength;
-    }
-
     public int getCubeDim() {
         return this.cubeDim;
     }
@@ -74,8 +70,7 @@ public class Cuber {
     public String toString() {
         StringBuilder builder = new StringBuilder();
         Iterator<Entry<String, Integer>> iterator = new ArrayList<HashMap.Entry<String, Integer>>(algMap.entrySet()).iterator();
-        System.out.println("Now in listlad");
-        while(iterator.hasNext()) {
+        while (iterator.hasNext()) {
             builder.append("\"" + iterator.next().getKey() + "\", " + iterator.next().getValue() + "\n");
         }
         return builder.toString();

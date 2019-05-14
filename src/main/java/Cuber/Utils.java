@@ -8,7 +8,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.io.Serializable;
 
 public class Utils {
@@ -56,14 +55,15 @@ public class Utils {
         }
     }
 
-    public static Object getFromLocalFile(String fileName) throws FileNotFoundException, IOException, ClassNotFoundException {
+    public static Object getFromLocalFile(String fileName)
+            throws FileNotFoundException, IOException, ClassNotFoundException {
         ObjectInputStream oStream;
         Object out = null;
-        
+
         oStream = new ObjectInputStream(new FileInputStream(new File(fileName)));
         out = oStream.readObject();
         oStream.close();
-        
+
         return out;
     }
 }

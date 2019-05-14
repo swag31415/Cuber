@@ -3,11 +3,12 @@ package Cuber;
 import java.util.HashMap;
 
 public class CuberLogger {
-    Cuber cuber;
-    String fileName;
 
-    String readableExtension = ".csv";
-    String logExtension = ".cuberLog";
+    private Cuber cuber;
+    private String fileName;
+
+    private static final String readableExtension = ".csv";
+    private static final String logExtension = ".cuberLog";
 
     public CuberLogger(Cuber cuber) {
         this.cuber = cuber;
@@ -16,15 +17,14 @@ public class CuberLogger {
 
     public void log() {
         Utils.printToLocalFile(fileName + readableExtension, this.cuber.toString());
-        System.out.println("saved to file");
         Utils.printToLocalFile(fileName + logExtension, this.cuber.getAlgMap());
-        System.out.println("logging complete");
     }
 
+    @SuppressWarnings("unchecked") // Catch exceptions and campaign for refined generics in JAVA
     public boolean pullFromLog() {
         try {
             HashMap<String, Integer> logMap = (HashMap<String, Integer>) Utils.getFromLocalFile(fileName + logExtension);
-            this.cuber.algMap.putAll(logMap);
+            this.cuber.getAlgMap().putAll(logMap);
             return true;
         } catch (Exception e) {
             // e.printStackTrace();

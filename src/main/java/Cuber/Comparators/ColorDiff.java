@@ -5,8 +5,9 @@ import Cuber.Cube.Cube;
 import Cuber.Molds.Comparator;
 
 public class ColorDiff implements Comparator {
-    
-    public ColorDiff() {}
+
+    public ColorDiff() {
+    }
 
     public int compareCubes(Cube cube1, Cube cube2) {
         Color[][][] pMap1 = cube1.getPMap();

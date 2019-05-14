@@ -6,7 +6,7 @@ import Cuber.Cube.Moves;
 import Cuber.Molds.Generator;
 
 public class Rand3x3Gen implements Generator {
-    
+
     private Random rand;
     private Moves[] moveArray;
 
@@ -21,7 +21,7 @@ public class Rand3x3Gen implements Generator {
         for (int i = 0; i < algLength; i++) {
             alg[i] = moveArray[rand.nextInt(moveArray.length)];
         }
-        
+
         return alg;
     }
 }
