@@ -84,9 +84,9 @@ public class Cuber {
 
     public void log() {
         String fileName = "CuberLog " + cubeDim + "x" + cubeDim;
-        Utils.printToLocalFile(fileName, this.toString());
+        Utils.printToLocalFile(fileName + ".csv", this.toString());
         System.out.println("saved to file");
-        Utils.printToLocalFile(fileName, algMap);
+        Utils.printToLocalFile(fileName + ".cuberLog", algMap);
         System.out.println("logging complete");
     }
 

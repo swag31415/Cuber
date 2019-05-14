@@ -33,7 +33,7 @@ public class Utils {
 
     public static void printToLocalFile(String fileName, String print) {
         try {
-            FileWriter writer = new FileWriter(new File(fileName + ".csv"));
+            FileWriter writer = new FileWriter(new File(fileName));
             writer.append(print);
             writer.flush();
             writer.close();
@@ -45,7 +45,7 @@ public class Utils {
     public static void printToLocalFile(String fileName, Serializable print) {
         ObjectOutputStream oStream;
         try {
-            oStream = new ObjectOutputStream(new FileOutputStream(new File(fileName + ".cuberLog")));
+            oStream = new ObjectOutputStream(new FileOutputStream(new File(fileName)));
             oStream.writeObject(print);
             oStream.flush();
             oStream.close();
@@ -60,7 +60,7 @@ public class Utils {
         ObjectInputStream oStream;
         Object out = null;
         
-        oStream = new ObjectInputStream(new FileInputStream(new File(fileName + ".cuberLog")));
+        oStream = new ObjectInputStream(new FileInputStream(new File(fileName)));
         out = oStream.readObject();
         oStream.close();
         
