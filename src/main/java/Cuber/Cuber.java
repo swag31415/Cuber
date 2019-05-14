@@ -1,6 +1,5 @@
 package Cuber;
 
-import java.util.Random;
 import java.util.Map.Entry;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -80,25 +79,5 @@ public class Cuber {
             builder.append("\"" + iterator.next().getKey() + "\", " + iterator.next().getValue() + "\n");
         }
         return builder.toString();
-    }
-
-    public void log() {
-        String fileName = "CuberLog " + cubeDim + "x" + cubeDim;
-        Utils.printToLocalFile(fileName + ".csv", this.toString());
-        System.out.println("saved to file");
-        Utils.printToLocalFile(fileName + ".cuberLog", algMap);
-        System.out.println("logging complete");
-    }
-
-    public boolean pullFromLog() {
-        try {
-            String fileName = "CuberLog " + cubeDim + "x" + cubeDim;
-            HashMap<String, Integer> logMap = (HashMap<String, Integer>) Utils.getFromLocalFile(fileName);
-            this.algMap.putAll(logMap);
-            return true;
-        } catch (Exception e) {
-            // e.printStackTrace();
-            return false;
-        }
     }
 }
