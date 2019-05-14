@@ -1,5 +1,6 @@
 import Cuber.Cuber;
 import Cuber.Comparators.ColorDiff;
+import Cuber.Comparators.DisColor;
 import Cuber.Cube.Moves;
 import Cuber.Generators.Rand3x3Gen;
 
