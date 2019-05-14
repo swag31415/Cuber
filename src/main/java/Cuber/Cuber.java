@@ -73,13 +73,13 @@ public class Cuber {
 
     @Override
     public String toString() {
-        String out = "";
+        StringBuilder builder = new StringBuilder();
         Iterator<Entry<String, Integer>> iterator = new ArrayList<HashMap.Entry<String, Integer>>(algMap.entrySet()).iterator();
         System.out.println("Now in listlad");
         while(iterator.hasNext()) {
-            out += "\"" + iterator.next().getKey() + "\", " + iterator.next().getValue() + "\n";
+            builder.append("\"" + iterator.next().getKey() + "\", " + iterator.next().getValue() + "\n");
         }
-        return out;
+        return builder.toString();
     }
 
     public void log() {
