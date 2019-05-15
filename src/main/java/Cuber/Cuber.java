@@ -69,7 +69,8 @@ public class Cuber {
         StringBuilder builder = new StringBuilder();
         Iterator<Entry<String, Integer>> iterator = new ArrayList<HashMap.Entry<String, Integer>>(algMap.entrySet()).iterator();
         while (iterator.hasNext()) {
-            builder.append("\"" + iterator.next().getKey() + "\", " + iterator.next().getValue() + "\n");
+            Entry<String, Integer> entry = iterator.next();
+            builder.append("\"" + entry.getKey() + "\", " + entry.getValue() + "\n");
         }
         return builder.toString();
     }
