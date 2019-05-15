@@ -5,7 +5,7 @@ Discovers Rubik's cube algorithms (currently only works for 3x3 cubes)
 ## Getting Started
 
 1. Clone the Repository
-2. Run "./gradlew run and the GUI will walk you through it
+2. Run "./gradlew run" and the GUI will walk you through it
 
 ## Built With
 
