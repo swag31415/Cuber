@@ -11,9 +11,15 @@ plugins {
     id 'java-library'
     id 'java'
     id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.7'
 }
 
 // sourceSets.main.java.srcDirs = ['src/main/java']
+
+javafx {
+    version = "12.0.1"
+    modules = ['javafx.fxml', 'javafx.controls']
+}
 
 application {
     mainClassName = "Main"

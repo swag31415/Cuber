@@ -2,7 +2,9 @@ package Cuber;
 
 import java.util.HashMap;
 
-public class CuberLogger {
+import Cuber.Molds.Logger;
+
+public class CuberLogger implements Logger {
 
     private Cuber cuber;
     private String fileName;
@@ -15,11 +17,13 @@ public class CuberLogger {
         this.fileName = "CuberLog " + cuber.getCubeDim() + "x" + cuber.getCubeDim();
     }
 
+    @Override
     public void log() {
         Utils.printToLocalFile(fileName + readableExtension, this.cuber.toString());
         Utils.printToLocalFile(fileName + logExtension, this.cuber.getAlgMap());
     }
 
+    @Override
     @SuppressWarnings("unchecked") // Catch exceptions and campaign for refined generics in JAVA
     public boolean pullFromLog() {
         try {

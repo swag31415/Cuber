@@ -13,7 +13,6 @@ import Cuber.Molds.Generator;
 public class Cuber {
 
     private HashMap<String, Integer> algMap;
-    private int algLength;
     private int cubeDim;
 
     private Generator gen;
@@ -21,10 +20,9 @@ public class Cuber {
 
     private Cube solvedCube;
 
-    public Cuber(int cubeDim, int algLength, Generator gen, Comparator comp) {
+    public Cuber(int cubeDim, Generator gen, Comparator comp) {
         this.cubeDim = cubeDim;
         this.solvedCube = new Cube(cubeDim);
-        this.algLength = algLength;
         this.gen = gen;
         this.comp = comp;
         this.algMap = new HashMap<String, Integer>();
@@ -39,7 +37,7 @@ public class Cuber {
         return -1;
     }
 
-    public void findAlgs(int iterations) {
+    public void findAlgs(int iterations, int algLength) {
         for (int i = 0; i < iterations; i++) {
             Moves[] alg = gen.genAlg(algLength);
             String algStr = Utils.arrayToString(alg);
