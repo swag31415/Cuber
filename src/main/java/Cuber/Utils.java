@@ -8,7 +8,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.io.Serializable;
 
 public class Utils {
@@ -33,7 +32,7 @@ public class Utils {
 
     public static void printToLocalFile(String fileName, String print) {
         try {
-            FileWriter writer = new FileWriter(new File(fileName + ".csv"));
+            FileWriter writer = new FileWriter(new File(fileName));
             writer.append(print);
             writer.flush();
             writer.close();
@@ -45,7 +44,7 @@ public class Utils {
     public static void printToLocalFile(String fileName, Serializable print) {
         ObjectOutputStream oStream;
         try {
-            oStream = new ObjectOutputStream(new FileOutputStream(new File(fileName + ".cuberLog")));
+            oStream = new ObjectOutputStream(new FileOutputStream(new File(fileName)));
             oStream.writeObject(print);
             oStream.flush();
             oStream.close();
@@ -56,14 +55,15 @@ public class Utils {
         }
     }
 
-    public static Object getFromLocalFile(String fileName) throws FileNotFoundException, IOException, ClassNotFoundException {
+    public static Object getFromLocalFile(String fileName)
+            throws FileNotFoundException, IOException, ClassNotFoundException {
         ObjectInputStream oStream;
         Object out = null;
-        
-        oStream = new ObjectInputStream(new FileInputStream(new File(fileName + ".cuberLog")));
+
+        oStream = new ObjectInputStream(new FileInputStream(new File(fileName)));
         out = oStream.readObject();
         oStream.close();
-        
+
         return out;
     }
 }

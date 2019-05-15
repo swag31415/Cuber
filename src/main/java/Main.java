@@ -1,4 +1,9 @@
 import Cuber.Cuber;
+import Cuber.CuberLogger;
+import Cuber.Comparators.ColorDiff;
+import Cuber.Comparators.DisColor;
+import Cuber.Cube.Moves;
+import Cuber.Generators.Rand3x3Gen;
 
 public class Main {
 
@@ -12,8 +17,9 @@ public class Main {
         int subIterations = (iterations - (iterations % cycles)) / cycles;
         int remIterations = (iterations % cycles);
         
-        Cuber cuber = new Cuber(args[1], args[2]);
-        System.out.println(cuber.pullFromLog() ? "Successfully pulled from log" : "Failed to pull from log");
+        Cuber cuber = new Cuber(args[1], args[2], new Rand3x3Gen(Moves.values()), new ColorDiff());
+        CuberLogger logger = new CuberLogger(cuber);
+        System.out.println(logger.pullFromLog() ? "Successfully pulled from log" : "Failed to pull from log");
 
         for (int i = 1; i <= cycles; i++) {
             cuber.findAlgs(subIterations);
@@ -21,7 +27,7 @@ public class Main {
         }
         cuber.findAlgs(remIterations);
         System.out.println("Best Alg Err: " + cuber.getBestAlgErr());
-        cuber.log();
+        logger.log();
     }
 
     public static void main(String[] args) {

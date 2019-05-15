@@ -6,7 +6,7 @@ import Cuber.Cube.Mappings.Face;
 
 public class Cube {
 
-    private static final int cubeSize = 6; // Number of faces in a cube *DONT CHANGE THIS*
+    public static final int cubeSize = 6; // Number of faces in a cube *DONT CHANGE THIS*
     private int dim;
 
     private Color[][][] pMap;
