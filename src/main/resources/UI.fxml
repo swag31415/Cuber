@@ -13,7 +13,7 @@
    <children>
       <AnchorPane prefHeight="160.0" prefWidth="370.0">
          <children>
-            <Slider fx:id="Iterations" blockIncrement="1000.0" layoutX="134.0" majorTickUnit="1.0E7" max="1.0E8" minorTickCount="1" prefHeight="40.0" prefWidth="240.0" showTickMarks="true" value="1000.0" />
+            <Slider fx:id="Iterations" blockIncrement="1000.0" layoutX="134.0" majorTickUnit="100000.0" max="1000000.0" minorTickCount="1" prefHeight="40.0" prefWidth="240.0" showTickMarks="true" value="1000.0" />
             <Slider fx:id="CubeDim" blockIncrement="1.0" layoutX="134.0" layoutY="40.0" majorTickUnit="3.0" max="12.0" min="3.0" minorTickCount="1" prefHeight="40.0" prefWidth="120.0" showTickMarks="true" snapToTicks="true" value="3.0" />
             <Slider fx:id="AlgLength" blockIncrement="1.0" layoutX="134.0" layoutY="80.0" majorTickUnit="5.0" max="20.0" min="1.0" minorTickCount="4" prefHeight="40.0" prefWidth="120.0" showTickMarks="true" snapToTicks="true" value="1.0" />
             <ImageView fitHeight="100.0" fitWidth="120.0" layoutX="14.0" layoutY="10.0">
