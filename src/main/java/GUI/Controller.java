@@ -1,11 +1,14 @@
 package GUI;
 
 import Cuber.Cuber;
+import Cuber.CuberFactory;
 import Cuber.CuberLogger;
 import Cuber.Comparators.ColorDiff;
 import Cuber.Cube.Moves;
 import Cuber.Generators.Rand3x3Gen;
+import GUI.Generator.Printer;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,20 +23,21 @@ public class Controller extends Application {
     private static final int Cycles = 100;
 
     private String selection;
-    private Cuber cuber;
-    CuberLogger logger;
 
-    @FXML private Slider Iterations;
-    @FXML private Slider CubeDim;
-    @FXML private Slider AlgLength;
-    @FXML private Label TOut;
+    private CuberFactory cuberFactory;
+
+    @FXML
+    private Slider Iterations;
+    @FXML
+    private Slider CubeDim;
+    @FXML
+    private Slider AlgLength;
+    @FXML
+    private Label TOut;
 
     public Controller() {
         this.selection = "";
-    }
-
-    public void run() {
-        launch();
+        this.cuberFactory = new CuberFactory(new Rand3x3Gen(Moves.values()), new ColorDiff());
     }
 
     @Override
@@ -55,30 +59,15 @@ public class Controller extends Application {
         String newSelection = iterations + " of length " + algLength + " algorithms on a " + cubeDim + "x" + cubeDim + "?";
 
         if (selection.equals(newSelection)) {
-            initBuild(cubeDim);
+            Cuber cuber = cuberFactory.getCuber(cubeDim);
+            CuberLogger logger = new CuberLogger(cuber);
+
             TOut.setText((logger.pullFromLog() ? "Successfully pulled from log" : "Failed to pull from log") + ", Generating...");
-            generate(iterations, Cycles, algLength);
+
+            Platform.runLater(new Generator(cuber, iterations, algLength, (String str) -> TOut.setText(str), logger));
         } else {
             TOut.setText(newSelection+ " Press Generate again to Confirm.");
             selection = newSelection;
         }
-    }
-
-    public void initBuild(int cubeDim) {
-        this.cuber = new Cuber(cubeDim, new Rand3x3Gen(Moves.values()), new ColorDiff());
-        this.logger = new CuberLogger(cuber);
-    }
-
-    private void generate(int iterations, int cycles, int algLength) {
-        int subIterations = (iterations - (iterations % cycles)) / cycles;
-        int remIterations = (iterations % cycles);
-
-        for (int i = 1; i <= cycles; i++) {
-            cuber.findAlgs(subIterations, algLength);
-            TOut.setText(((i * subIterations) / ((double) iterations)) * 100 + "% done");
-        }
-        cuber.findAlgs(remIterations, algLength);
-        TOut.setText("Best Alg Err: " + cuber.getBestAlgErr());
-        logger.log();
     }
 }

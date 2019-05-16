@@ -1,7 +1,5 @@
-import Cuber.Cuber;
-import Cuber.CuberLogger;
+import Cuber.CuberFactory;
 import Cuber.Comparators.ColorDiff;
-import Cuber.Comparators.DisColor;
 import Cuber.Cube.Moves;
 import Cuber.Generators.Rand3x3Gen;
 import GUI.Controller;
@@ -9,7 +7,6 @@ import GUI.Controller;
 public class Main {
 
     public static void main(String[] args) {
-        Controller cont = new Controller();
-        cont.run();
+        Controller.launch(Controller.class, args);
     }
 }
