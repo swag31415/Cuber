@@ -9,7 +9,6 @@ public class Cuber {
     public interface Cube {
         void init(int dim);
         void disp();
-        byte get(int face, int y, int x);
     }
 
     public Cuber() {
