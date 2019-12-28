@@ -1,9 +1,13 @@
 plugins {
-    id 'java-library'
     id 'java'
     id 'application'
     id 'org.openjfx.javafxplugin' version '0.0.8'
     id 'edu.sc.seis.launch4j' version '2.4.6'
+}
+
+launch4j {
+  mainClassName = 'Cuber.Launcher'
+  icon = "${projectDir}/cube.ico"
 }
 
 javafx {
@@ -13,20 +17,13 @@ javafx {
 
 repositories {
     jcenter()
+    maven { url "https://jitpack.io" }
 }
 
 dependencies {
     implementation 'com.google.guava:guava:27.0.1-jre'
+    implementation 'com.github.jnr:jnr-ffi:2.1.11'
     runtimeOnly "org.openjfx:javafx-graphics:$javafx.version:win"
 }
 
 mainClassName = 'Cuber.App'
-
-jar {
-    manifest {
-        attributes 'Main-Class': 'Cuber.Launcher'
-    }
-    from {
-        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
-    }
-}
