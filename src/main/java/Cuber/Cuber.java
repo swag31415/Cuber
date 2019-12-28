@@ -11,6 +11,8 @@ public class Cuber {
         void e_turn(int ind);
         void m_turn(int ind);
         void s_turn(int ind);
+        void turn(int ind);
+        void turns(int len, int[] inds);
         void disp();
     }
 
@@ -18,9 +20,7 @@ public class Cuber {
         Cube cube = LibraryLoader.create(Cube.class).load(cube_dll);
         cube.init(3);
         cube.disp();
-        cube.e_turn(0);
-        cube.m_turn(1);
-        cube.s_turn(0);
+        cube.turns(3, new int[]{0, 4, 6});
         cube.disp();
     }
 }

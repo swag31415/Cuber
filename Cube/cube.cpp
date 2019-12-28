@@ -159,6 +159,23 @@ extern "C" cube void s_turn(int index)
     }
 }
 
+extern "C" cube void turn(int index) {
+    if (index < dim) {
+        e_turn(index);
+    } else if (index < dim * 2) {
+        m_turn(index % dim);
+    } else {
+        s_turn(index % dim);
+    }
+}
+
+extern "C" cube void turns(int len, int *inds) {
+    for (int i = 0; i < len; i++)
+    {
+        turn(inds[i]);
+    }
+}
+
 extern "C" cube void disp()
 {
     std::string *lines = new std::string[dim * 3];
