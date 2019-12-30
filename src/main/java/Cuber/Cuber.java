@@ -4,23 +4,20 @@ import jnr.ffi.LibraryLoader;
 
 public class Cuber {
 
-    public static final String cube_dll = "Cube\\cube";
+    public static final String cuber_dll = "Cube\\CuberLib";
+    private static CuberLib cuberLib;
 
-    public interface Cube {
-        void init(int dim);
-        void e_turn(int ind);
-        void m_turn(int ind);
-        void s_turn(int ind);
-        void turn(int ind);
-        void turns(int len, int[] inds);
-        void disp();
+    public interface CuberLib {
+        int getLen(int dim);
+        void init(byte[] _cube, int dim);
+        void turn(byte[] _cube, int dim, int ind);
+        void turns(byte[] _cube, int dim, int len, int[] inds);
+        void disp(byte[] _cube, int dim);
     }
 
     public Cuber() {
-        Cube cube = LibraryLoader.create(Cube.class).load(cube_dll);
-        cube.init(3);
-        cube.disp();
-        cube.turns(3, new int[]{0, 4, 6});
-        cube.disp();
+        if (Cuber.cuberLib == null) {
+            Cuber.cuberLib = LibraryLoader.create(CuberLib.class).load(cuber_dll);
+        }
     }
 }

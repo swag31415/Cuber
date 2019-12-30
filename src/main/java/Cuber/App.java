@@ -30,7 +30,11 @@ public class App extends Application {
 
     public static void main(String[] args) {
         // launch(args);
-        new Cuber();
+        for (int i = 0; i < 10; i++) {
+            long sTime = System.currentTimeMillis();
+                new Cuber();
+            System.out.println(System.currentTimeMillis() - sTime);
+        }
         System.exit(0);
     }
 
