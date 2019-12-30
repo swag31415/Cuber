@@ -101,7 +101,7 @@ extern "C" CuberLib void turn(char *_cube, int dim, int index) {
     }
 }
 
-extern "C" CuberLib void turns(char *_cube, int dim, int len, int *inds) {
+extern "C" CuberLib void turns(char *_cube, int dim, int *inds, int len) {
     for (int i = 0; i < len; i++)
     {
         turn(_cube, dim, inds[i]);
@@ -140,4 +140,13 @@ extern "C" CuberLib void disp(char *_cube, int dim)
     {
         std::cout << lines[i] << std::endl;
     }
+}
+
+extern "C" CuberLib int compare(char *_cube1, char *_cube2, int dim) {
+    int diff = 0;
+    for (int i = 0; i < (sides * dim * dim); i++)
+    {
+        diff += (_cube1[i] == _cube2[i]);
+    }
+    return diff;
 }
